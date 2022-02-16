@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: client-deployment
+  labels: 
+    app: mernclient
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mernclient
+  template:
+    metadata:
+      labels:
+        app: mernclient
+    spec: 
+      containers:
+      - name: mernclient
+        image: mernclient
+        ports:
+        - containerPort: 3000
+        imagePullPolicy: Never
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: client-service
+spec:
+  selector:
+    app: mernclient
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+      nodePort: 30000
