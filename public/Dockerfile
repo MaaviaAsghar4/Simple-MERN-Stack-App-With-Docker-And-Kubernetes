@@ -6,10 +6,12 @@ WORKDIR /app/client
 
 COPY package*.json .
 
-RUN npm install
+RUN yarn cache clean -f
 
-COPY . .
+RUN yarn install
+
+COPY ./ .
 
 EXPOSE 3000
 
-CMD ["npm","start"]
+CMD ["yarn","start"]

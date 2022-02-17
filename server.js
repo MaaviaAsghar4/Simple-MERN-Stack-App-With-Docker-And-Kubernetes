@@ -15,10 +15,10 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // DB configuration
-const db = require('./Config/key').mongoURI;
+// const db = require('./Config/key').mongoURI;
 
 // Connect to database
-mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true }, err => {
+mongoose.connect(`mongodb://mongodb-service:27017/kubernetes-app`, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false, }, err => {
     if (err)
         console.error(err);
     else

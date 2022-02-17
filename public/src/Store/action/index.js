@@ -2,7 +2,7 @@ const getTodo = () => {
     return dispatch => {
         const fetchData = async () => {
             try {
-                const response = await fetch('api/todoitem')
+                const response = await fetch('http://172.17.0.7:5000/api/todoitem')
                 let data = await response.json()
                 console.log(data)
                 dispatch({ type: 'getTodo', payload: data })
@@ -18,7 +18,7 @@ const addTodo = (todo) => {
     const newTodo = { todo }
     return dispatch => {
         const addData = async () => {
-            const response = await fetch('api/todoitem', {
+            const response = await fetch('http://172.17.0.7:5000/api/todoitem', {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
@@ -36,7 +36,7 @@ const addTodo = (todo) => {
 const deleteTodo = (id) => {
     return dispatch => {
         const deleteItem = async () => {
-            const fetchTodo = await fetch(`api/todoitem/${id}`, {
+            const fetchTodo = await fetch(`http://172.17.0.7:5000/api/todoitem/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-type': 'application/json'
@@ -60,7 +60,7 @@ const updateTodo = (id) => {
 const setTodo = (id, todoValue, uri) => {
     return dispatch => {
         const updateItem = async () => {
-            const updateValue = await fetch(`api/todoitem/${uri}`, {
+            const updateValue = await fetch(`http://172.17.0.7:5000/api/todoitem/${uri}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-type': 'application/json'
